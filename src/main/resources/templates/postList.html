@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            width: 100%;
+            border: 1px solid #444444;
+            text-align: center;
+        }
+
+        th, td {
+            border: 1px solid #444444;
+        }
+    </style>
+</head>
+<body>
+<h1>게시물 목록 조회</h1>
+<table>
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>수정자</th>
+        <th>작성일시</th>
+        <th>댓글개수</th>
+    </tr>
+    <tr th:each="post : ${posts}">
+        <td th:text="${post.postId}">번호</td>
+        <td th:text="${post.title}" th:onclick="|location.href='@{/posts/{postId}/(postId=${post.postId})}'|" style="color: blue; cursor: pointer">제목</td>
+        <td th:text="${post.writer.name}">작성자</td>
+        <td th:if="${#strings.isEmpty(post.modifier)}" th:text="${'없음'}">수정자</td>
+        <td th:unless="${#strings.isEmpty(post.modifier)}" th:text="${post.modifier.name}">수정자</td>
+        <td th:text="${post.createdAt}">작성일시</td>
+        <td th:text="${post.comments.size()}">댓글개수</td>
+    </tr>
+</table>
+<span th:if="${posts.getTotalPages()!=0}" th:each="page : ${#numbers.sequence(0, posts.getTotalPages()-1)}">
+    <a th:href="|@{/posts(page=${page})}|" th:text="${page}+1"></a>
+</span>
+<br/>
+<!--<a href="/post/list/previous">이전</a>-->
+<!--<a href="/post/list/next">다음</a><br />-->
+<a href="/posts/register">게시물 등록</a>
+<a href="/login">처음으로</a>
+</body>
+</html>

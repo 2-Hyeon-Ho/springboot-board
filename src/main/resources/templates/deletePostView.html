@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>삭제된 게시물</h1>
+<div>
+    <div>
+        <label style="font-weight: bolder;">게시물 번호</label>
+        <p th:text="${deletePost.postId}">번호</p>
+    </div>
+    <div>
+        <label style="font-weight: bolder;">제목</label>
+        <p th:text="${deletePost.title}"></p>
+    </div>
+    <div>
+        <label style="font-weight: bolder;">내용</label>
+        <p th:text="${deletePost.content}"></p>
+    </div>
+    <div>
+        <label style="font-weight: bolder;">작성자</label>
+        <p th:text="${deletePost.writerName}"></p>
+    </div>
+    <div>
+        <label style="font-weight: bolder;">수정자</label>
+        <p th:text="${modifier != null} ? ${modifier} : '없음'"></p>
+    </div>
+    <div>
+        <label style="font-weight: bolder;">작성일시</label>
+        <p th:text="${deletePost.createdAt}"></p>
+    </div>
+    <div>
+        <label style="font-weight: bolder;">수정일시</label>
+        <p th:text="${deletePost.modifiedAt != null} ? ${deletePost.modifiedAt} : '없음'"></p>
+    </div>
+    <!--    <div>-->
+    <!--        <label style="font-weight: bolder;">댓글목록</label>-->
+    <!--        <p th:each="comment : ${comments}">-->
+    <!--            댓글 작성자 : <p th:text="${comment.user.name}">-->
+    <!--            댓글 내용 : <p th:text="${comment.content}">-->
+    <!--            댓글 작성일시 : <p th:text="${comment.createdAt}">-->
+    <!--        </p>-->
+    <!--    </div>-->
+</div>
+<a th:href="@{/posts/{postId}/restore(postId=${deletePost.postId})}">복구하기</a><br />
+<a href="/posts/delete/list">홈으로</a>
+</body>
+</html>

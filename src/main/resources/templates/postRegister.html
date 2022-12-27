@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>게시물 등록</h1>
+<!--<form method="post" action="/post/register" enctype="multipart/form-data">-->
+<form method="post" action="/posts/register">
+    제목: <input type="text" name="title" /><br />
+    <textarea name="content" rows="10" cols="80"></textarea><br />
+<!--    <input type="file" name="file" accept=".gif, .jpg, .jpeg, .png" multiple /><br />-->
+    <input type="submit" value="확인"/> <input type="button" value="취소" onclick="location.href='/posts'">
+</form>
+</body>
+</html>
